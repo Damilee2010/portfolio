@@ -1,298 +1,674 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday — Ejike Nwakalor Divine</title>
-    <meta name="description" content="Birthday site for Ejike — back end developer at Guru Innovation Hub." />
-
-   
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Poppins', 'Inter', 'ui-sans-serif', 'system-ui'],
-            }
-          }
-        }
-      }
-    </script>
-
-    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'Inter', 'ui-sans-serif', 'system-ui'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite alternate',
+                        'bounce-gentle': 'bounce-gentle 2s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        'pulse-glow': {
+                            '0%': { boxShadow: '0 0 5px rgba(52, 211, 153, 0.5)' },
+                            '100%': { boxShadow: '0 0 20px rgba(52, 211, 153, 0.8)' },
+                        },
+                        'bounce-gentle': {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-5px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-      
-      .gradient-bg {
-        background: linear-gradient(120deg, rgba(59,130,246,0.08), rgba(236,72,153,0.06));
-      }
-     
-      .img-cover { object-fit: cover; width: 100%; height: 100%; }
+        .gradient-bg {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(52, 211, 153, 0.08) 50%, rgba(59, 130, 246, 0.05) 100%);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #34d399 0%, #22d3ee 50%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .img-cover { 
+            object-fit: cover; 
+            width: 100%; 
+            height: 100%; 
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+        }
+        
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .glow-button {
+            background: linear-gradient(135deg, #34d399, #22d3ee);
+            transition: all 0.3s ease;
+        }
+        
+        .glow-button:hover {
+            box-shadow: 0 0 20px rgba(52, 211, 153, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #34d399;
+            opacity: 0;
+            z-index: 1000;
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite alternate;
+        }
+        
+        .bounce-gentle {
+            animation: bounce-gentle 2s infinite;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            z-index: 0;
+        }
+        
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #34d399, transparent);
+            margin: 2rem auto;
+            width: 80%;
+            max-width: 400px;
+        }
+        
+        .message-item {
+            transition: all 0.3s ease;
+        }
+        
+        .message-item:hover {
+            background-color: rgba(52, 211, 153, 0.05);
+            border-left: 3px solid #34d399;
+        }
+        
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item img {
+            transition: transform 0.4s ease;
+        }
+        
+        .skill-badge {
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.1), rgba(34, 211, 238, 0.1));
+            border: 1px solid rgba(52, 211, 153, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-badge:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.2), rgba(34, 211, 238, 0.2));
+        }
+        
+        .cake-counter {
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.05), rgba(59, 130, 246, 0.05));
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
     </style>
-  </head>
-
-  <body class="min-h-screen bg-gray-50 text-gray-800 font-sans">
+</head>
+<body class="min-h-screen bg-gray-900 text-gray-100 font-sans overflow-x-hidden">
     
-    <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-gray-100">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
-          <a href="#home" class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 to-indigo-500 flex items-center justify-center text-white font-bold">E</div>
-            <div class="hidden sm:block">
-              <p class="text-sm font-semibold">Ejike N. Divine</p>
-              <p class="text-xs text-gray-500">Back-end Developer · Guru Innovation Hub</p>
+    <div id="particles-container" class="fixed inset-0 pointer-events-none z-0"></div>
+    
+    <header class="sticky top-0 z-40 bg-gray-900/90 backdrop-blur-md border-b border-gray-800 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="#home" class="flex items-center gap-3 group">
+                    <div class="relative">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-400 to-cyan-400 flex items-center justify-center text-gray-900 font-bold group-hover:scale-110 transition-transform duration-300">E</div>
+                    </div>
+                    <div class="hidden sm:block">
+                        <p class="text-sm font-semibold">Ejike N. Divine</p>
+                        <p class="text-xs text-gray-400">Back-end Developer · Guru Innovation Hub</p>
+                    </div>
+                </a>
+
+                <nav class="hidden md:flex items-center gap-6 text-sm">
+                    <a href="#about" class="hover:text-emerald-400 transition-colors duration-300">About</a>
+                    <a href="#gallery" class="hover:text-emerald-400 transition-colors duration-300">Gallery</a>
+                    <a href="#messages" class="hover:text-emerald-400 transition-colors duration-300">Messages</a>
+                    <a href="#rsvp" class="px-4 py-2 rounded-full glow-button text-gray-900 font-medium shadow-sm hover:shadow-lg transition-all duration-300">Send Wishes</a>
+                </nav>
+
+                <div class="md:hidden">
+                    <button id="menuBtn" aria-label="Open menu" class="p-2 rounded-md hover:bg-gray-800 transition-colors duration-300">
+                        <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
             </div>
-          </a>
-
-          <nav class="hidden md:flex items-center gap-6 text-sm">
-            <a href="#about" class="hover:text-indigo-600">About</a>
-            <a href="#gallery" class="hover:text-indigo-600">Gallery</a>
-            <a href="#messages" class="hover:text-indigo-600">Messages</a>
-            <a href="#rsvp" class="px-3 py-1 rounded-md bg-indigo-600 text-white shadow-sm hover:bg-indigo-700">RSVP</a>
-          </nav>
-
-         
-          <div class="md:hidden">
-            <button id="menuBtn" aria-label="Open menu" class="p-2 rounded-md hover:bg-gray-100">
-              <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-          </div>
         </div>
-      </div>
 
-      
-      <div id="mobileMenu" class="hidden md:hidden border-t border-gray-100">
-        <div class="px-4 py-3 flex flex-col gap-2">
-          <a href="#about" class="py-2">About</a>
-          <a href="#gallery" class="py-2">Gallery</a>
-          <a href="#messages" class="py-2">Messages</a>
-          <a href="#rsvp" class="py-2 rounded-md bg-indigo-600 text-white text-center">RSVP</a>
+        <div id="mobileMenu" class="hidden md:hidden border-t border-gray-800 bg-gray-900/95 backdrop-blur-md">
+            <div class="px-4 py-3 flex flex-col gap-2">
+                <a href="#about" class="py-2 px-2 rounded-md hover:bg-gray-800 transition-colors duration-300">About</a>
+                <a href="#gallery" class="py-2 px-2 rounded-md hover:bg-gray-800 transition-colors duration-300">Gallery</a>
+                <a href="#messages" class="py-2 px-2 rounded-md hover:bg-gray-800 transition-colors duration-300">Messages</a>
+                <a href="#rsvp" class="py-2 rounded-md glow-button text-gray-900 text-center">Send Wishes</a>
+            </div>
         </div>
-      </div>
     </header>
 
-    
-    <main id="home" class="gradient-bg py-12">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <section class="space-y-6">
-            <div class="inline-flex items-center gap-2 bg-white/60 px-3 py-1 rounded-full border border-gray-200">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-pink-500" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M9.049 2.927C9.277 2.37 9.77 2 10.317 2h-.001c.548 0 1.041.37 1.269.927l1.07 2.97 3.116.452c.592.086.835.814.402 1.23l-2.257 2.152.532 3.102c.102.59-.518 1.04-1.037.76L10 13.347l-2.739 1.964c-.519.28-1.139-.17-1.037-.76l.532-3.102L4.459 7.579c-.433-.416-.19-1.144.402-1.23l3.116-.452L9.049 2.927z" />
-              </svg>
-              <span class="text-sm font-medium">Happy Birthday</span>
+    <main id="home" class="gradient-bg py-16 md:py-20 relative overflow-hidden">
+        <!-- Floating decorative elements -->
+        <div class="absolute top-10 left-10 w-6 h-6 rounded-full bg-emerald-400 opacity-20 floating-element"></div>
+        <div class="absolute top-20 right-20 w-10 h-10 rounded-full bg-cyan-400 opacity-30 floating-element" style="animation-delay: 1s;"></div>
+        <div class="absolute bottom-20 left-20 w-8 h-8 rounded-full bg-blue-500 opacity-30 floating-element" style="animation-delay: 2s;"></div>
+        <div class="absolute bottom-10 right-10 w-12 h-12 rounded-full bg-emerald-300 opacity-20 floating-element" style="animation-delay: 3s;"></div>
+        
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <section class="space-y-6">
+                    <div class="inline-flex items-center gap-2 bg-gray-800/70 px-4 py-2 rounded-full border border-gray-700 shadow-sm pulse-glow">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927C9.277 2.37 9.77 2 10.317 2h-.001c.548 0 1.041.37 1.269.927l1.07 2.97 3.116.452c.592.086.835.814.402 1.23l-2.257 2.152.532 3.102c.102.59-.518 1.04-1.037.76L10 13.347l-2.739 1.964c-.519.28-1.139-.17-1.037-.76l.532-3.102L4.459 7.579c-.433-.416-.19-1.144.402-1.23l3.116-.452L9.049 2.927z" />
+                        </svg>
+                        <span class="text-sm font-medium">Happy Birthday</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight">
+                        <span class="hero-gradient">Ejike Nwakalor Divine</span>
+                    </h1>
+                    <p class="text-gray-300 max-w-xl text-lg">Today we're celebrating an amazing developer, colleague, and friend. Ejike brings so much talent and positive energy to our team at Guru Innovation Hub. Join us in making his day extra special!</p>
+
+                    <div class="flex gap-4 items-center">
+                        <a href="#rsvp" class="px-6 py-3 rounded-full glow-button text-gray-900 font-medium shadow-lg">Send Wishes</a>
+                        <a href="#gallery" class="px-6 py-3 rounded-full border border-gray-700 bg-gray-800/70 hover:bg-gray-800 hover:shadow-md transition-all duration-300 flex items-center gap-2">
+                            <i class="fas fa-images text-emerald-400"></i>
+                            <span>See Photos</span>
+                        </a>
+                    </div>
+
+                    <div class="mt-6 text-sm text-gray-400 flex items-center gap-2">
+                        <i class="fas fa-briefcase text-emerald-400"></i>
+                        <span>Works at <strong>Guru Innovation Hub</strong> · Back-end Developer</span>
+                    </div>
+
+                    <div class="mt-6 flex gap-3">
+                        <a href="mailto:ejike@example.com" class="text-xs px-3 py-2 rounded-full border border-gray-700 bg-gray-800/70 hover:bg-gray-800 hover:shadow-sm transition-all duration-300 flex items-center gap-2">
+                            <i class="fas fa-envelope text-emerald-400"></i>
+                            <span>Email</span>
+                        </a>
+                        <a href="#" class="text-xs px-3 py-2 rounded-full border border-gray-700 bg-gray-800/70 hover:bg-gray-800 hover:shadow-sm transition-all duration-300 flex items-center gap-2">
+                            <i class="fab fa-linkedin text-cyan-400"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="#" class="text-xs px-3 py-2 rounded-full border border-gray-700 bg-gray-800/70 hover:bg-gray-800 hover:shadow-sm transition-all duration-300 flex items-center gap-2">
+                            <i class="fab fa-github text-gray-300"></i>
+                            <span>GitHub</span>
+                        </a>
+                    </div>
+                </section>
+
+                <section class="relative">
+                    <div class="w-full h-80 md:h-96 rounded-2xl overflow-hidden shadow-xl border border-gray-800 bg-gray-800 card-hover relative">
+                        <img src="hero-img.jpg" alt="Ejike portrait" class="img-fit" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                    </div>
+
+                    <div class="absolute -bottom-4 -right-4 bg-gray-800 border border-gray-700 rounded-xl p-4 shadow-lg flex items-center gap-3 bounce-gentle">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-gray-900">
+                            <i class="fas fa-birthday-cake"></i>
+                        </div>
+                        <div>
+                            <div class="text-sm font-semibold">Birthday Cake</div>
+                            <div class="text-xs text-gray-400">Make a wish 🎂</div>
+                        </div>
+                    </div>
+                </section>
             </div>
-
-            <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight">Ejike Nwakalor Divine</h1>
-            <p class="text-gray-600 max-w-xl">Celebrating a brilliant back-end developer at Guru Innovation Hub — a friend, builder, and problem-solver. Join us in wishing Ejike an amazing year ahead!</p>
-
-            <div class="flex gap-3 items-center">
-              <a href="#rsvp" class="px-4 py-2 rounded-md bg-pink-500 text-white font-medium shadow-sm hover:opacity-95">Send Wishes</a>
-              <a href="#gallery" class="px-4 py-2 rounded-md border border-gray-200">See Photos</a>
-            </div>
-
-            <div class="mt-4 text-sm text-gray-500">Works at <strong>Guru Innovation Hub</strong> · Back-end Developer</div>
-
-            <div class="mt-6 flex gap-2">
-              <a href="mailto:ejike@example.com" class="text-xs px-2 py-1 rounded-full border">Email</a>
-              <a href="#" class="text-xs px-2 py-1 rounded-full border">LinkedIn</a>
-              <a href="#" class="text-xs px-2 py-1 rounded-full border">GitHub</a>
-            </div>
-          </section>
-
-          <section class="relative">
-            <div class="w-full h-80 md:h-96 rounded-2xl overflow-hidden shadow-lg border border-gray-100 bg-white">
-              <img src="hero-img.jpg" alt="Ejike portrait" class="img-fit portrait" />
-            </div>
-
-            <div class="absolute -bottom-4 left-4 bg-white border border-gray-100 rounded-xl px-4 py-2 shadow-md flex items-center gap-3">
-              <div>
-                <div class="text-sm font-semibold">Birthday Cake</div>
-                <div class="text-xs text-gray-500">Make a wish 🎂</div>
-              </div>
-            </div>
-          </section>
         </div>
-      </div>
     </main>
 
-  
-    <section id="about" class="py-12">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-          <div class="md:col-span-2 space-y-4">
-            <h2 class="text-2xl font-bold">About Ejike</h2>
-            <p class="text-gray-600">Ejike Nwakalor Divine is a passionate back-end developer at Guru Innovation Hub with a love for building stable, scalable systems. He enjoys solving tricky problems, mentoring juniors, and improving developer experience. When he's not coding, he likes to take photos, eat good food, and hang out with friends.</p>
+    <section id="about" class="py-16 relative">
+        <div class="section-divider"></div>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
+                <div class="md:col-span-2 space-y-6">
+                    <h2 class="text-3xl font-bold">About <span class="text-emerald-400">Ejike</span></h2>
+                    <p class="text-gray-300 text-lg">When Ejike isn’t busy coding magic and building backend systems that refuse to break, you’ll probably find him doing “IT guy things” or dropping big grammar about APIs.</p>
+                    
+                    <p class="text-gray-300 text-lg">But make no mistake, this guy no be all work o! Ejike loves snapping clean pictures, discovering mad jams, and chasing good food with his friends (especially when person dey pay 😅).
 
-            <div class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-3">
-              <div class="p-3 bg-white rounded-lg border text-center">
-                <div class="text-sm font-semibold">Languages</div>
-                <div class="text-xs text-gray-500">Node.js · Python</div>
-              </div>
-              <div class="p-3 bg-white rounded-lg border text-center">
-                <div class="text-sm font-semibold">Tools</div>
-                <div class="text-xs text-gray-500">Docker · Postgres</div>
-              </div>
-              <div class="p-3 bg-white rounded-lg border text-center">
-                <div class="text-sm font-semibold">Interests</div>
-                <div class="text-xs text-gray-500">Photography · Music</div>
-              </div>
-              <div class="p-3 bg-white rounded-lg border text-center">
-                <div class="text-sm font-semibold">Location</div>
-                <div class="text-xs text-gray-500">Nigeria</div>
-              </div>
-            </div>
-          </div>
+At Guru Innovation Hub, he’s that guy who always brings positive vibes, sense, and small cruise to the team, apart form "Tiny Ejike".</p>
 
-          <aside class="space-y-3">
-            <div class="p-4 rounded-lg bg-white border">
-              <p class="text-sm text-gray-500">Born</p>
-              <p class="font-semibold">Date hidden</p>
-            </div>
-            <div class="p-4 rounded-lg bg-white border">
-              <p class="text-sm text-gray-500">Company</p>
-              <p class="font-semibold">Guru Innovation Hub</p>
-            </div>
+                    <div class="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-4">
+                        <div class="p-4 rounded-lg skill-badge text-center card-hover">
+                            <div class="text-lg text-emerald-400 mb-1"><i class="fas fa-code"></i></div>
+                            <div class="text-sm font-semibold">Languages</div>
+                            <div class="text-xs text-gray-400">Node.js · Python</div>
+                        </div>
+                        <div class="p-4 rounded-lg skill-badge text-center card-hover">
+                            <div class="text-lg text-cyan-400 mb-1"><i class="fas fa-tools"></i></div>
+                            <div class="text-sm font-semibold">Tools</div>
+                            <div class="text-xs text-gray-400">Docker · Postgres</div>
+                        </div>
+                        <div class="p-4 rounded-lg skill-badge text-center card-hover">
+                            <div class="text-lg text-blue-500 mb-1"><i class="fas fa-heart"></i></div>
+                            <div class="text-sm font-semibold">Interests</div>
+                            <div class="text-xs text-gray-400">Photography · Music</div>
+                        </div>
+                        <div class="p-4 rounded-lg skill-badge text-center card-hover">
+                            <div class="text-lg text-emerald-400 mb-1"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="text-sm font-semibold">Location</div>
+                            <div class="text-xs text-gray-400">Nigeria</div>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="p-4 rounded-lg bg-white border text-center">
-              <div class="text-sm text-gray-500">Cake Count</div>
-              <div id="cakeCount" class="text-2xl font-bold">0</div>
-              <button id="addCake" class="mt-2 text-xs px-3 py-1 rounded-full border">Add a cake</button>
+                <aside class="space-y-5">
+                    <div class="p-5 rounded-lg bg-gray-800 border border-gray-700 shadow-sm card-hover">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-10 h-10 rounded-full bg-emerald-400/10 flex items-center justify-center text-emerald-400">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-400">Celebrating</p>
+                                <p class="font-semibold">Today!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-5 rounded-lg bg-gray-800 border border-gray-700 shadow-sm card-hover">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-10 h-10 rounded-full bg-cyan-400/10 flex items-center justify-center text-cyan-400">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-400">Company</p>
+                                <p class="font-semibold">Guru Innovation Hub</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-5 rounded-lg cake-counter text-center card-hover">
+                        <div class="text-4xl font-bold text-cyan-400 mb-2" id="cakeCount">0</div>
+                        <div class="text-sm text-gray-400 mb-3">Cake Count</div>
+                        <button id="addCake" class="px-4 py-2 rounded-full bg-cyan-400 text-gray-900 font-medium hover:bg-cyan-300 transition-colors duration-300 flex items-center gap-2 mx-auto">
+                            <i class="fas fa-plus"></i>
+                            <span>Add a cake</span>
+                        </button>
+                    </div>
+                </aside>
             </div>
-          </aside>
         </div>
-      </div>
     </section>
 
- 
-    <section id="gallery" class="py-12 bg-white">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-2xl font-bold mb-6">Photo Gallery</h2>
+    <section id="gallery" class="py-16 bg-gray-800">
+        <div class="section-divider"></div>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold mb-10 text-center">Photo <span class="text-emerald-400">Gallery</span></h2>
 
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-          <!-- sample images from Unsplash source. Replace with real photos by changing the src URLs -->
-          <div class="h-60 rounded-lg overflow-hidden shadow-sm"><img class="img-fit" src="gallery1.jpg" alt="photo"/></div>
-          <div class="h-60 rounded-lg overflow-hidden shadow-sm"><img class="img-fit" src="hero-img.jpg" alt="photo"/></div>
-          <div class="h-60 rounded-lg overflow-hidden shadow-sm"><img class="img-cover" src="gallery2.jpg" alt="photo"/></div>
-          <div class="h-60 rounded-lg overflow-hidden shadow-sm"><img class="img-cover" src="gallery3.jpg" alt="photo"/></div>
-          <div class="h-60 rounded-lg overflow-hidden shadow-sm"><img class="img-cover" src="https://source.unsplash.com/600x600/?portrait,smile" alt="photo"/></div>
-          <div class="h-60 rounded-lg overflow-hidden shadow-sm"><img class="img-cover" src="https://source.unsplash.com/600x600/?cake,birthday" alt="photo"/></div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
+                <div class="gallery-item h-60 rounded-xl overflow-hidden shadow-md">
+                    <img class="img-cover" src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" alt="photo"/>
+                </div>
+                <div class="gallery-item h-60 rounded-xl overflow-hidden shadow-md">
+                    <img class="img-fit" src="gallery1.jpg" alt="photo"/>
+                </div>
+                <div class="gallery-item h-60 rounded-xl overflow-hidden shadow-md">
+                    <img class="img-cover" src="gallery6.jpg" alt="photo"/>
+                </div>
+                <div class="gallery-item h-60 rounded-xl overflow-hidden shadow-md">
+                    <img class="img-cover" src="gallery3.jpg" alt="photo"/>
+                </div>
+                <div class="gallery-item h-60 rounded-xl overflow-hidden shadow-md">
+                    <img class="img-cover" src="gallery4.jpg" alt="photo"/>
+                </div>
+                <div class="gallery-item h-60 rounded-xl overflow-hidden shadow-md">
+                    <img class="img-cover" src="gallery5.jpg" alt="photo"/>
+                </div>
+            </div>
+
+            <div id="lightbox" class="fixed inset-0 bg-black/90 hidden items-center justify-center p-4 z-50">
+                <div class="max-w-4xl w-full bg-gray-800 rounded-xl overflow-hidden shadow-2xl">
+                    <div class="flex justify-between items-center p-4 border-b border-gray-700">
+                        <h3 class="font-semibold">Photo Gallery</h3>
+                        <button id="closeLightbox" class="p-2 rounded-full hover:bg-gray-700 transition-colors duration-300">
+                            <i class="fas fa-times text-gray-400"></i>
+                        </button>
+                    </div>
+                    <img id="lightboxImg" src="" alt="large" class="w-full h-96 object-contain bg-gray-900"/>
+                </div>
+            </div>
         </div>
-
-        <!-- simple lightbox -->
-        <div id="lightbox" class="fixed inset-0 bg-black/60 hidden items-center justify-center p-4">
-          <div class="max-w-3xl w-full bg-white rounded-lg overflow-hidden">
-            <button id="closeLightbox" class="p-2 text-sm text-gray-500">Close</button>
-            <img id="lightboxImg" src="" alt="large" class="w-full h-96 object-contain bg-gray-100"/>
-          </div>
-        </div>
-
-      </div>
     </section>
 
-    <!-- MESSAGES / RSVP -->
-    <section id="messages" class="py-12">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-2xl font-bold mb-4">Leave a message for Ejike</h2>
-        <form id="wishForm" class="space-y-4">
-          <input id="name" placeholder="Your name" class="w-full p-3 border rounded-lg" />
-          <textarea id="message" placeholder="Write a short birthday wish..." rows="4" class="w-full p-3 border rounded-lg"></textarea>
-          <div class="flex items-center gap-3">
-            <button type="submit" class="px-4 py-2 rounded-md bg-indigo-600 text-white">Send</button>
-            <div id="formMsg" class="text-sm text-green-600 hidden">Message sent!</div>
-          </div>
-        </form>
+    <section id="messages" class="py-16 gradient-bg">
+        <div class="section-divider"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold mb-8 text-center">Leave a <span class="text-emerald-400">Message</span> for Ejike</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2">
+                    <form id="wishForm" class="space-y-5 bg-gray-800 p-6 rounded-2xl shadow-md card-hover">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Your Name</label>
+                            <input id="name" placeholder="Enter your name" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition-all duration-300 text-gray-100" />
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-300 mb-1">Your Message</label>
+                            <textarea id="message" placeholder="Write a short birthday wish..." rows="4" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition-all duration-300 text-gray-100"></textarea>
+                        </div>
+                        
+                        <div class="flex items-center gap-4">
+                            <button type="submit" class="px-6 py-3 rounded-full glow-button text-gray-900 font-medium flex items-center gap-2">
+                                <i class="fas fa-paper-plane"></i>
+                                <span>Send Message</span>
+                            </button>
+                            <div id="formMsg" class="text-sm text-emerald-400 hidden flex items-center gap-2">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Message sent!</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="bg-gray-800 p-6 rounded-2xl shadow-md card-hover h-fit">
+                    <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+                        <i class="fas fa-info-circle text-emerald-400"></i>
+                        <span>Tips for your message</span>
+                    </h3>
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-check text-emerald-400 mt-1"></i>
+                            <span>Share a memory you have with Ejike</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-check text-emerald-400 mt-1"></i>
+                            <span>Mention something you admire about his work</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-check text-emerald-400 mt-1"></i>
+                            <span>Include your wishes for the year ahead</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-        <div id="wishesList" class="mt-6 space-y-3">
-          <!-- messages appear here -->
+            <div id="wishesList" class="mt-10 space-y-4">
+            
+            </div>
         </div>
-      </div>
     </section>
 
-    <section id="rsvp" class="py-12 bg-gradient-to-b from-white to-gray-50">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-2xl font-bold">RSVP / Send a Gift</h2>
-        <p class="text-gray-600 mt-2">If you'd like to send a short note or confirm attendance, use the form above or email directly.</p>
-      </div>
+    <section id="rsvp" class="py-16 bg-gradient-to-b from-gray-800 to-gray-900">
+        <div class="section-divider"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-4">RSVP / Send a <span class="text-emerald-400">Gift</span></h2>
+            <p class="text-gray-300 max-w-2xl mx-auto text-lg">Want to send Ejike a personal note or virtual gift? Use the form above or reach out directly.</p>
+            
+            <div class="mt-8 flex flex-wrap justify-center gap-4">
+                <a href="mailto:ejike@example.com" class="px-6 py-3 rounded-full bg-gray-800 border border-gray-700 hover:shadow-md transition-all duration-300 flex items-center gap-2">
+                    <i class="fas fa-envelope text-emerald-400"></i>
+                    <span>Send Email</span>
+                </a>
+                <a href="#" class="px-6 py-3 rounded-full glow-button text-gray-900 font-medium flex items-center gap-2">
+                    <i class="fas fa-gift"></i>
+                    <span>Virtual Gift</span>
+                </a>
+            </div>
+        </div>
     </section>
 
-    <footer class="py-6 text-center text-sm text-gray-500">
-      Made with ❤️ for Ejike — Back-end Developer at Guru Innovation Hub
+    <footer class="py-8 text-center text-gray-400 bg-gray-900 border-t border-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="mb-2">Made with <i class="fas fa-heart text-emerald-400"></i> for Ejike — Back-end Developer at Guru Innovation Hub</p>
+            <p class="text-sm">© 2025 Birthday Celebration. All rights reserved.</p>
+        </div>
     </footer>
 
-    <!-- JS -->
     <script>
-      // mobile menu toggle
-      const menuBtn = document.getElementById('menuBtn');
-      const mobileMenu = document.getElementById('mobileMenu');
-      let open = false;
-      menuBtn?.addEventListener('click', () => {
-        open = !open;
-        mobileMenu.classList.toggle('hidden', !open);
-      });
-
-      // cake counter
-      const cakeCountEl = document.getElementById('cakeCount');
-      const addCakeBtn = document.getElementById('addCake');
-      let cakes = 0;
-      addCakeBtn?.addEventListener('click', () => {
-        cakes += 1;
-        cakeCountEl.textContent = String(cakes);
-      });
-
-      // gallery lightbox
-      const galleryImgs = document.querySelectorAll('#gallery img');
-      const lightbox = document.getElementById('lightbox');
-      const lightboxImg = document.getElementById('lightboxImg');
-      const closeLightbox = document.getElementById('closeLightbox');
-
-      galleryImgs.forEach(img => {
-        img.addEventListener('click', (e) => {
-          lightboxImg.src = e.target.src;
-          lightbox.classList.remove('hidden');
-          lightbox.classList.add('flex');
+        // Create floating particles
+        function createParticles() {
+            const container = document.getElementById('particles-container');
+            const colors = ['#34d399', '#22d3ee', '#3b82f6', '#10b981'];
+            
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties
+                const size = Math.random() * 10 + 5;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const left = Math.random() * 100;
+                const animationDelay = Math.random() * 20;
+                const duration = Math.random() * 20 + 10;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.backgroundColor = color;
+                particle.style.left = `${left}%`;
+                particle.style.animationDelay = `${animationDelay}s`;
+                particle.style.animation = `float ${duration}s ease-in-out infinite`;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // Confetti effect
+        function createConfetti() {
+            const container = document.getElementById('particles-container');
+            const colors = ['#34d399', '#22d3ee', '#3b82f6', '#10b981', '#3b82f6'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                
+                // Random properties
+                const size = Math.random() * 10 + 5;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const left = Math.random() * 100;
+                const animationDuration = Math.random() * 3 + 2;
+                
+                confetti.style.width = `${size}px`;
+                confetti.style.height = `${size}px`;
+                confetti.style.backgroundColor = color;
+                confetti.style.left = `${left}%`;
+                confetti.style.top = `-10px`;
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                
+                // Animation
+                confetti.style.animation = `fall ${animationDuration}s linear forwards`;
+                
+                // Add to container
+                container.appendChild(confetti);
+                
+                // Remove after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, animationDuration * 1000);
+            }
+        }
+        
+        // mobile menu toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let open = false;
+        menuBtn?.addEventListener('click', () => {
+            open = !open;
+            mobileMenu.classList.toggle('hidden', !open);
         });
-      });
 
-      closeLightbox?.addEventListener('click', () => {
-        lightbox.classList.remove('flex');
-        lightbox.classList.add('hidden');
-      });
+        // cake counter with confetti
+        const cakeCountEl = document.getElementById('cakeCount');
+        const addCakeBtn = document.getElementById('addCake');
+        let cakes = 0;
+        addCakeBtn?.addEventListener('click', () => {
+            cakes += 1;
+            cakeCountEl.textContent = String(cakes);
+            createConfetti();
+            
+            // Add animation to cake counter
+            cakeCountEl.classList.add('bounce-gentle');
+            setTimeout(() => {
+                cakeCountEl.classList.remove('bounce-gentle');
+            }, 1000);
+        });
 
-      // wish form handling (client-side only)
-      const wishForm = document.getElementById('wishForm');
-      const wishesList = document.getElementById('wishesList');
-      const formMsg = document.getElementById('formMsg');
+        // gallery lightbox
+        const galleryImgs = document.querySelectorAll('#gallery img');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const closeLightbox = document.getElementById('closeLightbox');
 
-      wishForm?.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = document.getElementById('name').value || 'Anonymous';
-        const msg = document.getElementById('message').value || '';
-        if (!msg.trim()) return alert('Write a short wish!');
+        galleryImgs.forEach(img => {
+            img.addEventListener('click', (e) => {
+                lightboxImg.src = e.target.src;
+                lightbox.classList.remove('hidden');
+                lightbox.classList.add('flex');
+            });
+        });
 
-        const item = document.createElement('div');
-        item.className = 'p-3 bg-white rounded-lg border';
-        item.innerHTML = `<div class=\"text-sm font-semibold\">${escapeHtml(name)}</div><div class=\"text-sm text-gray-600 mt-1\">${escapeHtml(msg)}</div>`;
-        wishesList.prepend(item);
+        closeLightbox?.addEventListener('click', () => {
+            lightbox.classList.remove('flex');
+            lightbox.classList.add('hidden');
+        });
 
-        formMsg.classList.remove('hidden');
-        setTimeout(() => formMsg.classList.add('hidden'), 2000);
-        wishForm.reset();
-      });
+        // wish form handling (client-side only)
+        const wishForm = document.getElementById('wishForm');
+        const wishesList = document.getElementById('wishesList');
+        const formMsg = document.getElementById('formMsg');
 
-      function escapeHtml(unsafe) {
-        return unsafe
-          .replace(/&/g, '&amp;')
-          .replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;')
-          .replace(/"/g, '&quot;')
-          .replace(/'/g, '&#039;');
-      }
+        // Add some sample messages
+       const sampleMessages = [
+        { name: "Miracle", message: "Happy birthday to my big bro, I thank God for his life .MORE WEALTH , HEALTH AND GRACE . AMEN🥳🥳🥳🥳🥳🎂🎂🎂🥳🥳🥳🎉🎉" },
+        { name: "Bosss", message: "Happy birthday king of mash lands" },
+        { name: "CouchPotato", message: "Happy birthday my boss\nThe FastAPI overlord 🫠" },
+        { name: "Aizen", message: "Happy birthday to Ejike AKA MASH \nanother son of couch Potatoe 🥳" }
+    ];
+        
+        // Function to add a message to the list
+        function addMessageToDOM(name, message) {
+            const item = document.createElement('div');
+            item.className = 'message-item p-5 bg-gray-800 rounded-xl border border-gray-700 shadow-sm';
+            item.innerHTML = `
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-400 to-cyan-400 flex items-center justify-center text-gray-900 font-bold flex-shrink-0">
+                        ${name.charAt(0).toUpperCase()}
+                    </div>
+                    <div>
+                        <div class="font-semibold">${escapeHtml(name)}</div>
+                        <div class="text-gray-300 mt-1">${escapeHtml(message)}</div>
+                        <div class="text-xs text-gray-500 mt-2 flex items-center gap-1">
+                            <i class="far fa-clock"></i>
+                            <span>Just now</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            wishesList.prepend(item);
+        }
+        
+        // Add sample messages on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            sampleMessages.forEach(msg => {
+                addMessageToDOM(msg.name, msg.message);
+            });
+            
+            // Create background particles
+            createParticles();
+        });
+
+        wishForm?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value || 'Anonymous';
+            const msg = document.getElementById('message').value || '';
+            if (!msg.trim()) {
+                alert('Please write a short wish!');
+                return;
+            }
+
+            addMessageToDOM(name, msg);
+
+            formMsg.classList.remove('hidden');
+            setTimeout(() => formMsg.classList.add('hidden'), 3000);
+            wishForm.reset();
+        });
+
+        function escapeHtml(unsafe) {
+            return unsafe
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
     </script>
-  </body>
+</body>
 </html>
